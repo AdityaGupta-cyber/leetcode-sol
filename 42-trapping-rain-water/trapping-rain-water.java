@@ -49,7 +49,19 @@ class Solution {
         int i = 1;
         int j = n - 2;
 
-           while (i <= j) {
+        while (i <= j) {
+            if (leftMax <= rightMax) {
+                    leftMax = Math.max(leftMax, height[i]);
+                    countBlocks += (leftMax - height[i]);
+                i++;
+            } else {
+                    rightMax = Math.max(rightMax, height[j]);
+                    countBlocks += (rightMax - height[j]);
+
+                j--;
+            }
+        }
+             while (i <= j) {
             if (leftMax <= rightMax) {
                 leftMax = Math.max(leftMax, height[i]);
                 countBlocks += leftMax - height[i];
