@@ -40,6 +40,8 @@
 
 class Solution {
     public int trap(int[] height) {
+        if (height == null || height.length == 0)
+            return 0;
         int n = height.length;
         int leftMax = height[0];
         int rightMax = height[n - 1];
@@ -51,17 +53,16 @@ class Solution {
 
         while (i <= j) {
             if (leftMax <= rightMax) {
-                    leftMax = Math.max(leftMax, height[i]);
-                    countBlocks += (leftMax - height[i]);
+                leftMax = Math.max(leftMax, height[i]);
+                countBlocks += (leftMax - height[i]);
                 i++;
             } else {
-                    rightMax = Math.max(rightMax, height[j]);
-                    countBlocks += (rightMax - height[j]);
-
+                rightMax = Math.max(rightMax, height[j]);
+                countBlocks += (rightMax - height[j]);
                 j--;
             }
         }
-             while (i <= j) {
+        while (i <= j) {
             if (leftMax <= rightMax) {
                 leftMax = Math.max(leftMax, height[i]);
                 countBlocks += leftMax - height[i];
