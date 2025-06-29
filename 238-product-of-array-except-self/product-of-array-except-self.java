@@ -2,6 +2,7 @@ class Solution {
 
     //use prefix and postfix logic ->
     public int[] productExceptSelf(int[] nums) {
+        if(nums.length <=0 ) return new int[nums.length];
         int pre = 1;
         int post = 1;
         int result[] = new int[nums.length];
