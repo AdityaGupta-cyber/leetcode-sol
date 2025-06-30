@@ -8,7 +8,7 @@ class Solution {
                 st.push(c);
             else {
                 if (st.isEmpty())
-                    return false;
+                {  return false;}
                 char popped = st.pop();
                  if ((popped == '[' && c == ']') || (popped == '{' && c == '}') || (popped == '(' && c == ')'))
                     continue;
