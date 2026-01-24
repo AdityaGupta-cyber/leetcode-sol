@@ -3,11 +3,9 @@ class Solution {
         
         int lastZeroPosition = 0;
         for(int i = 0; i< nums.length; i++){
-            if(nums[lastZeroPosition] != 0  ){
-                if(nums[i] == 0){
+            if(nums[lastZeroPosition] != 0   && nums[i] == 0){
                     lastZeroPosition = i;  
                     continue;
-                }
             }
 
             //now that the lastZeroPosition is initialized with an index;
