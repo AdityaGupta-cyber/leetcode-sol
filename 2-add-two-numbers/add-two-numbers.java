@@ -20,67 +20,68 @@ class Solution {
 
         ListNode node1 = l1;
         ListNode node2 = l2;
-        ListNode result = null;
-        ListNode resultHead = null;
+        ListNode resultHead = new ListNode(-1);
+        ListNode result = resultHead;
         int carry = 0;
-        while (node1 != null && node2 != null) {
+        while (node1 != null ||  node2 != null || carry !=0) {
             int sum = 0;
 
-            if (node1 != null || node2 != null) {
-                sum = carry + node1.val + node2.val;
-                node1 = node1.next;
-                node2 = node2.next;
-            } else if (node1 == null) {
-                sum = carry + node2.val;
-                node2 = node2.next;
-            } else {
-                sum = carry + node1.val;
+            // if (node1 != null || node2 != null) {
+            //     sum = carry + node1.val + node2.val;
+            //     node1 = node1.next;
+            //     node2 = node2.next;
+            // } else if (node1 == null) {
+            //     sum = carry + node2.val;
+            //     node2 = node2.next;
+            // } else {
+            //     sum = carry + node1.val;
+            //     node1 = node1.next;
+            // }
+
+            if(node1 != null ){
+                sum +=  node1.val;
                 node1 = node1.next;
             }
-
+            if(node2 != null){
+                sum += node2.val;
+                node2 = node2.next;
+            }
+            sum += carry;
             carry = sum / 10;
-            if (result == null) {
-                result = new ListNode(sum % 10);
-                resultHead = result;
-            } else {
+
                 result.next = new ListNode(sum % 10);
                 result = result.next;
-            }
+            
         }
 
-        while (node1 != null) {
-            int sum = 0;
-            sum = carry + node1.val;
-            node1 = node1.next;
-            carry = sum/10;
-            if (result == null) {
-                result = new ListNode(sum % 10);
-                resultHead = result;
-            } else {
-                result.next = new ListNode(sum % 10);
-                result = result.next;
-            }
-        }
+        // while (node1 != null) {
+        //     int sum = 0;
+        //     sum = carry + node1.val;
+        //     node1 = node1.next;
+        //     carry = sum/10;
+        //     if (result == null) {
+        //         result = new ListNode(sum % 10);
+        //         resultHead = result;
+        //     } else {
+        //         result.next = new ListNode(sum % 10);
+        //         result = result.next;
+        //     }
+        // }
 
-        while (node2 != null) {
-            int sum = 0;
-            sum = carry + node2.val;
-            node2 = node2.next;
-            carry = sum/10;
-            if (result == null) {
-                result = new ListNode(sum % 10);
-                resultHead = result;
-            } else {
-                result.next = new ListNode(sum % 10);
-                result = result.next;
-            }
-        }
+        // while (node2 != null) {
+        //     int sum = 0;
+        //     sum = carry + node2.val;
+        //     node2 = node2.next;
+        //     carry = sum/10;
+        //         result.next = new ListNode(sum % 10);
+        //         result = result.next;
+        // }
 
-        if (carry != 0) {
-            result.next = new ListNode(carry);
-        }
+        // if (carry != 0) {
+        //     result.next = new ListNode(carry);
+        // }
 
-        return resultHead;
+        return resultHead.next;
     }
 
     // Iterate through the to linkedLists and store it into the number 
