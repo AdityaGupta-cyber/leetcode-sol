@@ -1,29 +1,28 @@
 class Solution {
   public int subarraySum(int[] arr, int k) {
-        // Size of the array
-        int n = arr.length;
 
-        // Initialize count of subarrays
-        int count = 0;
+    //Approach - prefix sum + hashMap
+    int n = arr.length;
+    int count = 0;
 
-        // Traverse all possible start indices
-        for (int i = 0; i < n; i++) {
-            // Initialize sum for current subarray
-            int sum = 0;
+    //Map to store frequency of prefix sums
+    HashMap<Integer,Integer> prefixSumCount = new HashMap<Integer,Integer>();
+    //initialise the map with 0:1 i.e prefixsum 0 has one occurence;
+    prefixSumCount.put(0,1);
+    int prefix = 0;
+    for(int i = 0; i < n; i++){
+        //calculate prefix sum till ith position
+        prefix += arr[i];
 
-            // Traverse all possible end indices from start
-            for (int j = i; j < n; j++) {
-                // Add current element to sum
-                sum += arr[j];
+        //calculate remove i.e x - k;
+        int remove = prefix - k;
 
-                // If sum equals k, increment count
-                if (sum == k) {
-                    count++;
-                }
-            }
+        if(prefixSumCount.containsKey(remove)){
+            count+=prefixSumCount.get(remove);
         }
 
-        // Return total count of subarrays
-        return count;
+        prefixSumCount.put(prefix, prefixSumCount.getOrDefault(prefix,0)+1);
+    }
+    return count;
     }
 }
