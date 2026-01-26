@@ -1,22 +1,18 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        if (s.length() == 0)
-            return 0;
-        //maintain a hashMap to store the used characters from the string;
-        int count = 0; //set the count to one as a substring will be atleast one single character.
-        // use 2pointer indices to check the longest substring and as we get the repeating character move the left index to right and right index = left index and move right index to capture the characters again;
-        for (int i = 0; i < s.length(); i++) {
-            Set<Character> map = new HashSet<>();
-            int temp = 0;
-            for (int j = i; j < s.length(); j++) {
-                if (map.contains(s.charAt(j))) {
-                    break;
-                }
-                map.add(s.charAt(j));
-                temp += 1;
+        int maxLength = 0;
+        int left = 0;
+        Map<Character,Integer> position = new HashMap<Character,Integer>();
+
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if (position.containsKey(c)) {
+                left = Math.max(left, position.get(c) + 1);
             }
-            count = Math.max(count, temp);
+
+            position.put(c,i);
+            maxLength = Math.max(maxLength, i - left + 1);
         }
-        return count;
+    return maxLength;
     }
 }
