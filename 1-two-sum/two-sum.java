@@ -3,7 +3,8 @@ class Solution {
         HashMap<Integer,Integer> complement = new HashMap<Integer,Integer>();
 
         for(int i = 0; i < nums.length; i++){
-            if(complement.containsKey(target - nums[i])) return new int[]{complement.get(target - nums[i]), i};
+            int diff = target - nums[i];
+            if(complement.containsKey(diff)) return new int[]{complement.get(diff), i};
 
             complement.put(nums[i],i);
         }
